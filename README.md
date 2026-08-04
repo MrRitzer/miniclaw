@@ -1,43 +1,50 @@
 # MiniClaw
 
-A lightweight, modular claw machine controller for hobbyists and developers.
+A lightweight, self-hosted gateway for connecting chat applications to AI coding agents.
 
 ## Overview
 
-MiniClaw is a slim alternative to OpenClaw, designed for embedded systems, home claw machines, and projects where simplicity and low resource usage matter. It provides the core primitives for controlling claw mechanics—up/down, left/right, grab/release—without the overhead of a full featured suite.
+MiniClaw is a minimal alternative to [OpenClaw](https://docs.openclaw.ai/), designed for users who want a simple, self-hosted AI agent gateway without the overhead of a full Node.js runtime. It bridges messaging channels—Discord, Telegram, Slack, and more—directly to your preferred AI coding assistant, keeping your data under your control.
 
 ## Design Goals
 
-- **Minimal footprint** — Runs on AVR, ESP32, and other microcontrollers with tight memory constraints
-- **Simple API** — Control the claw with a handful of clear commands
-- **Portable** — No hard dependencies; works with or without an OS
-- **Extensible** — Drop-in modules for common claw mechanisms and sensors
+- **Minimal dependencies** — Single binary, no runtime required
+- **Low resource usage** — Runs on modest hardware; VPS-friendly
+- **Simple configuration** — One config file, sensible defaults
+- **Fast startup** — No package manager, no plugin registry to fetch
 
 ## Quick Start
 
-```c
-claw_init();
-claw_move(X_AXIS, 50);   // move left/right (0-100)
-claw_move(Y_AXIS, 75);   // move forward/back (0-100)
-claw_grab();             // close claw
-claw_release();          // open claw
+```bash
+# Install
+curl -fsSL https://example.com/install.sh | sh
+
+# Configure
+miniclaw init
+nano ~/.config/miniclaw/config.yaml
+
+# Run
+miniclaw start
 ```
+
+## Supported Channels
+
+- Discord
+- Telegram
+- Slack
+- (More as the project grows)
 
 ## Architecture
 
 ```
-claw-core/       — Motor control, positioning, state machine
-claw-sensors/    — Current sensing, position反馈
-claw-input/      — Joystick, button, serial interfaces
-claw-display/    — LED strips, 7-seg, LCD status
+Chat apps → MiniClaw Gateway → AI Agent (Claude, GPT, etc.)
 ```
 
 ## Use Cases
 
-- DIY claw machine builds
-- Arcade cabinet conversions
-- Educational robotics projects
-- Drop-in replacement for OpenClaw in resource-constrained environments
+- Personal AI assistant accessible from any chat app
+- Self-hosted alternative to cloud-based AI integrations
+- Lightweight gateway for resource-constrained environments
 
 ## License
 
