@@ -2,7 +2,7 @@ services:
   miniclaw:
     build:
       context: .
-      dockerfile: docker/Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - ./data:/data
     ports:
