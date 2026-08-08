@@ -65,6 +65,8 @@ class MiniClawConfig:
     """Main MiniClaw configuration."""
 
     db_path: Path = field(default_factory=lambda: Path.home() / ".miniclaw" / "memory.db")
+    data_dir: Path = field(default_factory=lambda: Path("data").resolve())
+    workspace_dir: Path = field(default_factory=lambda: Path("data/workspace").resolve())
     log_level: str = "INFO"
     telegram: TelegramConfig = field(default_factory=TelegramConfig)
     openai: OpenAIConfig = field(default_factory=OpenAIConfig)
@@ -106,6 +108,8 @@ def load_miniclaw_config() -> MiniClawConfig:
 
     # Core config
     db_path = Path(_get_env("DB_PATH", "~/.miniclaw/memory.db")).expanduser()
+    data_dir = Path(_get_env("DATA_DIR", "data")).resolve()
+    workspace_dir = Path(_get_env("WORKSPACE_DIR", "data/workspace")).resolve()
     log_level = _get_env("LOG_LEVEL", "INFO")
 
     # Telegram config
@@ -131,6 +135,8 @@ def load_miniclaw_config() -> MiniClawConfig:
 
     return MiniClawConfig(
         db_path=db_path,
+        data_dir=data_dir,
+        workspace_dir=workspace_dir,
         log_level=log_level,
         telegram=telegram,
         openai=openai,

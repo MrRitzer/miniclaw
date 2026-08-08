@@ -22,8 +22,8 @@ RUN poetry install --no-root --no-interaction
 # Create non-root user
 RUN useradd -m -u 1000 miniclaw
 
-# Create data/agent directory for agent profile (mounted from host)
-RUN mkdir -p /data/agent && chown -R miniclaw:miniclaw /data
+# Create data directories for agent profile and workspace (mounted from host)
+RUN mkdir -p /data/agent /data/workspace && chown -R miniclaw:miniclaw /data
 
 USER miniclaw
 

@@ -1,7 +1,11 @@
 services:
   miniclaw:
-    build: .
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
     volumes:
-      - ./data:/app/data
+      - ./data:/data
     ports:
       - "18789:18789"
+    env_file:
+      - .env
