@@ -1,0 +1,7 @@
+services:
+  miniclaw:
+    build: .
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "18789:18789"
